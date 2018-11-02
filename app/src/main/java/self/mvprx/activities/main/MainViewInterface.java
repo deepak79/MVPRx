@@ -1,4 +1,4 @@
-package self.mvprx.activities;
+package self.mvprx.activities.main;
 
 import self.mvprx.pojo.MovieResponse;
 

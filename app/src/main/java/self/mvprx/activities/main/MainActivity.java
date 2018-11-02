@@ -1,11 +1,13 @@
-package self.mvprx.activities;
+package self.mvprx.activities.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import self.mvprx.R;
+import self.mvprx.activities.search.SearchActivity;
 import self.mvprx.adapters.MoviesAdapter;
 import self.mvprx.pojo.MovieResponse;
 
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     @Override
     public void displayMovies(MovieResponse movieResponse) {
         if (movieResponse != null) {
-            Log.e(TAG,""+movieResponse.toString());
+            Log.e(TAG, "" + movieResponse.toString());
             adapter = new MoviesAdapter(movieResponse.getResults(), MainActivity.this);
             rvMovies.setAdapter(adapter);
         }
@@ -82,4 +85,15 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.search) {
+            showToast("Search Clicked");
+            Intent i = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(i);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

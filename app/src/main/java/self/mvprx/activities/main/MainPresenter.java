@@ -1,4 +1,4 @@
-package self.mvprx.activities;
+package self.mvprx.activities.main;
 
 import android.util.Log;
 
@@ -27,7 +27,7 @@ public class MainPresenter implements MainPresenterInterface {
     }
 
     private Observable<MovieResponse> getObservable() {
-        return NetworkClient.getRetrofit()
+        return NetworkClient.getRetrofit(4)
                 .create(NetworkInterface.class)
                 .getMovies("1",Constants.API_KEY)
                 .subscribeOn(Schedulers.io())

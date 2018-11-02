@@ -7,10 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import self.mvprx.Constants;
 
 public class NetworkClient {
-    public static Retrofit retrofit;
+    private static Retrofit retrofit;
 
-    public static Retrofit getRetrofit() {
-
+    public static synchronized Retrofit getRetrofit(final int version) {
         if (retrofit == null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
             OkHttpClient okHttpClient = builder.build();
@@ -21,13 +20,7 @@ public class NetworkClient {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)
                     .build();
-
         }
-
         return retrofit;
-    }
-
-    public void NetworkClient() {
-
     }
 }
